@@ -1,3 +1,8 @@
+/* ===================================
+   MOBILE-FIRST VALENTINE'S DAY APP
+   Optimized for iPhone 16 and all devices
+   =================================== */
+
 /* Global Styles */
 * {
   margin: 0;
@@ -6,19 +11,22 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  width: 100%;
+  min-height: 100vh;
   overflow: hidden;
-  width: 100vw;
-  height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  touch-action: manipulation;
 }
 
 .gradient-background {
-  background: rgb(255, 208, 229);
-  background: linear-gradient(180deg, rgba(255, 208, 229, 1) 0%, rgba(255, 232, 242, 1) 36%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(180deg, #ffd0e5 0%, #ffe8f2 36%, #ffffff 100%);
 }
 
 /* Stage Management */
@@ -26,8 +34,9 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  height: -webkit-fill-available;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,6 +46,7 @@ body {
   z-index: 1;
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .stage.active {
@@ -53,16 +63,13 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
-  padding: 20px;
-  padding-top: max(20px, env(safe-area-inset-top));
-  padding-bottom: max(20px, env(safe-area-inset-bottom));
-  padding-left: max(20px, env(safe-area-inset-left));
-  padding-right: max(20px, env(safe-area-inset-right));
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  padding: 20px 16px;
 }
 
 .particle-canvas {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -71,26 +78,30 @@ body {
   z-index: 1;
 }
 
-/* Hidden Utility */
 .hidden {
   display: none !important;
 }
 
-/* Stage 1: Magical Portal */
+/* ===================================
+   STAGE 1: PORTAL ENTRANCE
+   =================================== */
+
 .portal-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 24px;
   animation: fadeInScale 1s ease-out;
+  max-width: 400px;
+  width: 100%;
 }
 
 .heart-portal {
-  width: 200px;
-  height: 200px;
+  width: 120px;
+  height: 120px;
   position: relative;
   animation: rotate3D 4s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px rgba(189, 30, 89, 0.5));
+  filter: drop-shadow(0 0 20px rgba(189, 30, 89, 0.4));
 }
 
 .heart-icon {
@@ -101,18 +112,18 @@ body {
 }
 
 .portal-title {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #bd1e59;
   text-align: center;
-  text-shadow: 0 2px 10px rgba(189, 30, 89, 0.3);
+  text-shadow: 0 2px 8px rgba(189, 30, 89, 0.3);
   animation: shimmer 3s ease-in-out infinite;
 }
 
 .portal-button {
   position: relative;
-  padding: 20px 60px;
-  font-size: 1.5rem;
+  padding: 14px 48px;
+  font-size: 1.1rem;
   font-weight: 600;
   color: white;
   background: linear-gradient(135deg, #bd1e59, #e91e63);
@@ -121,11 +132,7 @@ body {
   cursor: pointer;
   overflow: hidden;
   transition: transform 0.2s ease;
-  box-shadow: 0 10px 30px rgba(189, 30, 89, 0.4);
-}
-
-.portal-button:hover {
-  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(189, 30, 89, 0.4);
 }
 
 .portal-button:active {
@@ -142,9 +149,12 @@ body {
   animation: glowSlide 2s ease-in-out infinite;
 }
 
-/* Stage 2: Game */
+/* ===================================
+   STAGE 2: GAME
+   =================================== */
+
 .game-canvas {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -156,42 +166,43 @@ body {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   pointer-events: none;
+  padding: 0 16px;
 }
 
 .game-header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .game-title {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   font-weight: bold;
   color: #bd1e59;
-  margin-bottom: 20px;
-  text-shadow: 0 2px 10px rgba(189, 30, 89, 0.3);
+  margin-bottom: 16px;
+  text-shadow: 0 2px 8px rgba(189, 30, 89, 0.3);
 }
 
 .love-meter-container {
   background: white;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .love-meter-label {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #bd1e59;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .love-meter-bar {
   width: 100%;
-  height: 30px;
+  height: 24px;
   background: #f0f0f0;
-  border-radius: 15px;
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
 }
@@ -200,7 +211,7 @@ body {
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, #bd1e59, #e91e63, #ff1744);
-  border-radius: 15px;
+  border-radius: 12px;
   transition: width 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -218,48 +229,50 @@ body {
 }
 
 .love-meter-percentage {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #bd1e59;
-  margin-top: 10px;
+  margin-top: 8px;
   text-align: center;
 }
 
 .game-instructions {
   background: white;
-  padding: 20px;
-  border-radius: 15px;
+  padding: 16px;
+  border-radius: 12px;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #666;
-  margin-top: 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .game-complete {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  padding: 40px;
+  padding: 32px 24px;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
   pointer-events: auto;
   animation: bounceIn 0.6s ease-out;
+  max-width: 320px;
+  width: 90%;
 }
 
 .complete-message {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: bold;
   color: #bd1e59;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .continue-button {
-  padding: 15px 40px;
-  font-size: 1.2rem;
+  padding: 12px 32px;
+  font-size: 1.1rem;
   font-weight: 600;
   color: white;
   background: linear-gradient(135deg, #bd1e59, #e91e63);
@@ -267,18 +280,20 @@ body {
   border-radius: 30px;
   cursor: pointer;
   transition: transform 0.2s ease;
-  box-shadow: 0 5px 15px rgba(189, 30, 89, 0.4);
+  box-shadow: 0 4px 12px rgba(189, 30, 89, 0.4);
 }
 
-.continue-button:hover {
-  transform: scale(1.05);
+.continue-button:active {
+  transform: scale(0.98);
 }
 
-/* Stage 3: Question Card */
+/* ===================================
+   STAGE 3: QUESTION CARD
+   =================================== */
+
 .question-card {
   width: 90%;
-  max-width: 450px;
-  height: auto;
+  max-width: 380px;
   perspective: 1000px;
   cursor: pointer;
 }
@@ -286,8 +301,6 @@ body {
 .card-inner {
   position: relative;
   width: 100%;
-  height: auto;
-  min-height: 400px;
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
 }
@@ -302,24 +315,22 @@ body {
 
 .card-front,
 .card-back {
-  position: relative;
   width: 100%;
-  height: auto;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px 25px;
+  padding: 32px 24px;
+  min-height: 420px;
 }
 
 .card-front {
   background: linear-gradient(135deg, #fff, #ffe6f0);
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   overflow: hidden;
 }
 
@@ -340,7 +351,7 @@ body {
 }
 
 .card-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #bd1e59;
   text-align: center;
@@ -348,8 +359,8 @@ body {
 }
 
 .tap-hint {
-  margin-top: 20px;
-  font-size: 1rem;
+  margin-top: 16px;
+  font-size: 0.95rem;
   color: #999;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -357,73 +368,69 @@ body {
 .card-back {
   background: white;
   transform: rotateY(180deg);
-  gap: 10px;
-  padding: 20px;
   position: absolute;
   top: 0;
   left: 0;
+  gap: 12px;
 }
 
 .question-gif {
-  width: 180px;
-  height: 180px;
+  width: 140px;
+  height: 140px;
   object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
 }
 
 .question-title {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: bold;
   color: #bd1e59;
   text-align: center;
   font-style: italic;
-}
-
-.chase-counter {
-  font-size: 1rem;
-  color: #666;
-  text-align: center;
-  margin-top: 10px;
+  line-height: 1.3;
 }
 
 .encouragement-text {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #bd1e59;
   text-align: center;
-  min-height: 25px;
+  min-height: 22px;
   font-weight: 600;
   animation: fadeIn 0.3s ease;
 }
 
 .button-container {
   display: flex;
-  gap: 15px;
-  margin-top: 5px;
+  gap: 12px;
+  margin-top: 8px;
   position: relative;
+  width: 100%;
+  justify-content: center;
 }
 
 .response-button {
   position: relative;
-  padding: 10px 30px;
-  font-size: 1.1rem;
+  padding: 10px 28px;
+  font-size: 1rem;
   font-weight: 600;
   color: white;
   border: none;
-  border-radius: 25px;
+  border-radius: 24px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .yes-button {
   background: linear-gradient(135deg, #4caf50, #8bc34a);
-  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
 }
 
-.yes-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.6);
+.yes-button:active {
+  transform: scale(0.98);
 }
 
 .yes-button.evading {
@@ -433,16 +440,16 @@ body {
 
 .yes-button.catchable {
   animation: celebrate 0.6s ease-in-out;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .no-button {
   background: linear-gradient(135deg, #f44336, #e91e63);
-  box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
 }
 
-.no-button:hover {
-  transform: scale(1.05);
+.no-button:active {
+  transform: scale(0.98);
 }
 
 .no-button.evading {
@@ -460,43 +467,52 @@ body {
   animation: shine 2s ease-in-out infinite;
 }
 
-/* Stage 4: Celebration */
+/* ===================================
+   STAGE 4: CELEBRATION
+   =================================== */
+
 .celebration-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   animation: fadeInScale 1s ease-out;
+  max-width: 500px;
+  width: 100%;
 }
 
 .celebration-title {
-  font-size: 3rem;
+  font-size: 2.25rem;
   font-weight: bold;
   color: #bd1e59;
-  text-shadow: 0 2px 10px rgba(189, 30, 89, 0.3);
+  text-shadow: 0 2px 8px rgba(189, 30, 89, 0.3);
   animation: bounce 1s ease-in-out infinite;
 }
 
 .celebration-gif {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   animation: float 3s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
 .love-letter {
-  margin-top: 20px;
+  margin-top: 12px;
   animation: slideUp 0.8s ease-out 0.5s both;
+  width: 100%;
 }
 
 .letter-paper {
   background: linear-gradient(135deg, #fff, #fffaf0);
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  max-width: 800px;
+  padding: 20px 16px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
   position: relative;
   border: 2px solid #f0e68c;
 }
@@ -505,32 +521,33 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
   border-bottom: 2px solid #f0e68c;
 }
 
 .letter-heart {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   color: #bd1e59;
   animation: heartbeat 1.5s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
 .letter-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #bd1e59;
 }
 
 .letter-text {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  line-height: 1.5;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   font-family: 'Georgia', serif;
-  min-height: 100px;
+  text-align: left;
 }
 
 .letter-footer {
@@ -538,56 +555,59 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  padding-top: 15px;
+  padding-top: 12px;
   border-top: 2px solid #f0e68c;
   position: relative;
 }
 
 .letter-date {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #666;
   font-style: italic;
 }
 
 .seal-button {
-  padding: 10px 25px;
+  padding: 10px 24px;
   font-size: 0.95rem;
   font-weight: 600;
   color: white;
   background: linear-gradient(135deg, #bd1e59, #e91e63);
   border: none;
-  border-radius: 20px;
+  border-radius: 24px;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
   transition: transform 0.2s ease;
-  box-shadow: 0 5px 15px rgba(189, 30, 89, 0.4);
+  box-shadow: 0 4px 12px rgba(189, 30, 89, 0.4);
 }
 
-.seal-button:hover {
-  transform: scale(1.05);
+.seal-button:active {
+  transform: scale(0.98);
 }
 
 .kiss-icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .kiss-stamp {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 3rem;
+  top: 16px;
+  right: 16px;
+  font-size: 2.5rem;
   animation: stampAppear 0.5s ease-out;
   transform: rotate(-15deg);
 }
 
-/* Animations */
+/* ===================================
+   ANIMATIONS
+   =================================== */
+
 @keyframes fadeInScale {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
   to {
     opacity: 1;
@@ -596,54 +616,30 @@ body {
 }
 
 @keyframes rotate3D {
-  0%, 100% {
-    transform: rotateY(0deg) rotateZ(0deg);
-  }
-  25% {
-    transform: rotateY(180deg) rotateZ(5deg);
-  }
-  50% {
-    transform: rotateY(360deg) rotateZ(0deg);
-  }
-  75% {
-    transform: rotateY(180deg) rotateZ(-5deg);
-  }
+  0%, 100% { transform: rotateY(0deg) rotateZ(0deg); }
+  25% { transform: rotateY(180deg) rotateZ(5deg); }
+  50% { transform: rotateY(360deg) rotateZ(0deg); }
+  75% { transform: rotateY(180deg) rotateZ(-5deg); }
 }
 
 @keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 @keyframes shimmer {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
 }
 
 @keyframes glowSlide {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 200%;
-  }
+  0% { left: -100%; }
+  100% { left: 200%; }
 }
 
 @keyframes shimmerBar {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 200%;
-  }
+  0% { left: -100%; }
+  100% { left: 200%; }
 }
 
 @keyframes bounceIn {
@@ -661,48 +657,30 @@ body {
 }
 
 @keyframes celebrate {
-  0%, 100% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(1.1) rotate(-5deg);
-  }
-  75% {
-    transform: scale(1.1) rotate(5deg);
-  }
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.1) rotate(-5deg); }
+  75% { transform: scale(1.1) rotate(5deg); }
 }
 
 @keyframes shine {
-  0% {
-    left: -100%;
-  }
-  50%, 100% {
-    left: 200%;
-  }
+  0% { left: -100%; }
+  50%, 100% { left: 200%; }
 }
 
 @keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -711,15 +689,9 @@ body {
 }
 
 @keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(1.2);
-  }
-  50% {
-    transform: scale(1);
-  }
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1); }
 }
 
 @keyframes stampAppear {
@@ -737,198 +709,89 @@ body {
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .stage {
-    padding: 20px 0;
-  }
+/* ===================================
+   TABLET & DESKTOP STYLES
+   =================================== */
 
-  .stage-content {
-    padding: 20px 15px;
-    min-height: 100vh;
-  }
-
+@media (min-width: 768px) {
   .portal-title {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
   }
 
   .portal-button {
-    padding: 15px 40px;
-    font-size: 1.2rem;
-  }
-
-  .game-title {
-    font-size: 1.8rem;
-  }
-
-  .question-card {
-    width: 95%;
-    max-width: 400px;
-  }
-
-  .card-inner {
-    min-height: auto;
-  }
-
-  .card-front,
-  .card-back {
-    padding: 25px 20px;
-  }
-
-  .card-back {
-    gap: 8px;
-  }
-
-  .question-gif {
-    width: 160px;
-    height: 160px;
-  }
-
-  .question-title {
-    font-size: 1.3rem;
-  }
-
-  .encouragement-text {
-    font-size: 0.9rem;
-    min-height: 20px;
-  }
-
-  .response-button {
-    padding: 10px 25px;
-    font-size: 1rem;
-  }
-
-  .button-container {
-    gap: 12px;
-    margin-top: 5px;
-  }
-
-  .celebration-container {
-    gap: 20px;
-    padding: 20px 0;
-  }
-
-  .celebration-title {
-    font-size: 2rem;
-  }
-
-  .celebration-gif {
-    width: 220px;
-    height: 220px;
-  }
-
-  .letter-paper {
-    padding: 20px;
-    max-width: 95%;
-  }
-
-  .letter-title {
-    font-size: 1.3rem;
-  }
-
-  .letter-text {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: 15px;
-  }
-
-  .letter-header {
-    gap: 8px;
-    margin-bottom: 12px;
-    padding-bottom: 12px;
-  }
-
-  .letter-footer {
-    gap: 8px;
-    padding-top: 12px;
-  }
-
-  .seal-button {
-    padding: 8px 20px;
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .stage-content {
-    padding: 15px 10px;
-  }
-
-  .portal-title {
+    padding: 20px 60px;
     font-size: 1.5rem;
   }
 
   .heart-portal {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .game-title {
+    font-size: 2.5rem;
+  }
+
+  .game-ui {
+    max-width: 600px;
   }
 
   .question-card {
-    width: 95%;
+    max-width: 500px;
   }
 
   .card-front,
   .card-back {
-    padding: 20px 15px;
-  }
-
-  .card-back {
-    gap: 6px;
+    padding: 40px;
+    min-height: 500px;
   }
 
   .question-gif {
-    width: 140px;
-    height: 140px;
-  }
-
-  .question-title {
-    font-size: 1.2rem;
-  }
-
-  .encouragement-text {
-    font-size: 0.85rem;
-  }
-
-  .button-container {
-    gap: 10px;
-  }
-
-  .response-button {
-    padding: 8px 20px;
-    font-size: 0.95rem;
-  }
-
-  .celebration-gif {
     width: 180px;
     height: 180px;
   }
 
-  .celebration-title {
-    font-size: 1.8rem;
+  .question-title {
+    font-size: 1.6rem;
   }
 
-  .letter-paper {
-    padding: 15px;
+  .encouragement-text {
+    font-size: 1rem;
   }
 
-  .letter-title {
+  .response-button {
+    padding: 12px 35px;
     font-size: 1.2rem;
   }
 
+  .celebration-title {
+    font-size: 3rem;
+  }
+
+  .celebration-gif {
+    width: 300px;
+    height: 300px;
+  }
+
+  .letter-paper {
+    padding: 25px;
+    max-width: 800px;
+  }
+
+  .letter-title {
+    font-size: 1.5rem;
+  }
+
   .letter-text {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .seal-button {
-    padding: 7px 18px;
-    font-size: 0.85rem;
+    padding: 12px 30px;
+    font-size: 1rem;
   }
 }
