@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -10,6 +11,9 @@ body {
   overflow: hidden;
   width: 100vw;
   height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
 }
 
 .gradient-background {
@@ -31,6 +35,8 @@ body {
   visibility: hidden;
   transition: opacity 0.6s ease, visibility 0.6s ease;
   z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .stage.active {
@@ -49,6 +55,10 @@ body {
   width: 100%;
   height: 100%;
   padding: 20px;
+  padding-top: max(20px, env(safe-area-inset-top));
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
 }
 
 .particle-canvas {
@@ -737,6 +747,15 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .stage {
+    padding: 20px 0;
+  }
+
+  .stage-content {
+    padding: 20px 15px;
+    min-height: 100vh;
+  }
+
   .portal-title {
     font-size: 1.8rem;
   }
@@ -751,21 +770,50 @@ body {
   }
 
   .question-card {
-    height: 600px;
+    width: 95%;
+    max-width: 400px;
+  }
+
+  .card-inner {
+    min-height: auto;
+  }
+
+  .card-front,
+  .card-back {
+    padding: 25px 20px;
+  }
+
+  .card-back {
+    gap: 8px;
   }
 
   .question-gif {
-    width: 250px;
-    height: 250px;
+    width: 160px;
+    height: 160px;
   }
 
   .question-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+  }
+
+  .encouragement-text {
+    font-size: 0.9rem;
+    min-height: 20px;
   }
 
   .response-button {
-    padding: 12px 30px;
-    font-size: 1.1rem;
+    padding: 10px 25px;
+    font-size: 1rem;
+  }
+
+  .button-container {
+    gap: 12px;
+    margin-top: 5px;
+  }
+
+  .celebration-container {
+    gap: 20px;
+    padding: 20px 0;
   }
 
   .celebration-title {
@@ -773,34 +821,114 @@ body {
   }
 
   .celebration-gif {
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
   }
 
   .letter-paper {
-    padding: 30px;
+    padding: 20px;
+    max-width: 95%;
   }
 
   .letter-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .letter-text {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  .letter-header {
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+  }
+
+  .letter-footer {
+    gap: 8px;
+    padding-top: 12px;
+  }
+
+  .seal-button {
+    padding: 8px 20px;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
+  .stage-content {
+    padding: 15px 10px;
+  }
+
+  .portal-title {
+    font-size: 1.5rem;
+  }
+
+  .heart-portal {
+    width: 150px;
+    height: 150px;
+  }
+
   .question-card {
-    height: 550px;
+    width: 95%;
+  }
+
+  .card-front,
+  .card-back {
+    padding: 20px 15px;
+  }
+
+  .card-back {
+    gap: 6px;
+  }
+
+  .question-gif {
+    width: 140px;
+    height: 140px;
+  }
+
+  .question-title {
+    font-size: 1.2rem;
+  }
+
+  .encouragement-text {
+    font-size: 0.85rem;
   }
 
   .button-container {
-    flex-direction: column;
-    gap: 15px;
+    gap: 10px;
   }
 
   .response-button {
-    width: 200px;
+    padding: 8px 20px;
+    font-size: 0.95rem;
+  }
+
+  .celebration-gif {
+    width: 180px;
+    height: 180px;
+  }
+
+  .celebration-title {
+    font-size: 1.8rem;
+  }
+
+  .letter-paper {
+    padding: 15px;
+  }
+
+  .letter-title {
+    font-size: 1.2rem;
+  }
+
+  .letter-text {
+    font-size: 0.9rem;
+  }
+
+  .seal-button {
+    padding: 7px 18px;
+    font-size: 0.85rem;
   }
 }

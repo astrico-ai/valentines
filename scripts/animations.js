@@ -117,9 +117,11 @@ export class ButtonChaseController {
     const buttonRect = this.yesButton.getBoundingClientRect();
     const cardRect = this.questionCard.getBoundingClientRect();
 
-    // Calculate new position within card bounds
-    const maxX = cardRect.width - buttonRect.width - 40;
-    const maxY = 200; // Stay in lower portion of card
+    // Calculate new position within card bounds (mobile-friendly)
+    const isMobile = window.innerWidth <= 768;
+    const padding = isMobile ? 20 : 40;
+    const maxX = Math.max(0, cardRect.width - buttonRect.width - padding);
+    const maxY = isMobile ? 80 : 200; // Smaller range on mobile
 
     const newX = Math.random() * maxX;
     const newY = Math.random() * maxY;
@@ -184,9 +186,11 @@ export class ButtonChaseController {
     const buttonRect = this.noButton.getBoundingClientRect();
     const cardRect = this.questionCard.getBoundingClientRect();
 
-    // Calculate new position within card bounds
-    const maxX = cardRect.width - buttonRect.width - 40;
-    const maxY = 200;
+    // Calculate new position within card bounds (mobile-friendly)
+    const isMobile = window.innerWidth <= 768;
+    const padding = isMobile ? 20 : 40;
+    const maxX = Math.max(0, cardRect.width - buttonRect.width - padding);
+    const maxY = isMobile ? 80 : 200;
 
     const newX = Math.random() * maxX;
     const newY = Math.random() * maxY;
