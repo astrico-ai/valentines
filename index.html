@@ -3,93 +3,124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valentines Day</title>
+  <title>Valentine's Day - A Special Question</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .gradient-background {
-      background: rgb(255, 208, 229);
-      background: linear-gradient(180deg, rgba(255, 208, 229, 1) 0%, rgba(255, 232, 242, 1) 36%, rgba(255, 255, 255, 1) 100%);
-    }
-
-    .bounce2 {
-      animation: bounce2 2s ease infinite;
-    }
-
-    @keyframes bounce2 {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-20px);
-      }
-      60% {
-        transform: translateY(-10px);
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="./styles/main.css">
 </head>
-<body class="gradient-background">
-  <div class="flex items-center justify-center h-screen">
-    <div class="flex flex-col items-center p-4">
-      <img id="imageDisplay" src="./images/image1.gif" alt="Cute kitten with flowers" class="rounded-md h-[300px]" style="object-fit: cover;" />
-      <h2 id="valentineQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4">Will you be my Valentine?</h2>
-      <div class="flex gap-4 pt-[20px] items-center" id="responseButtons">
-        <button id="yesButton"
-          class="bounce2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-[20px] font-medium disabled:pointer-events-none disabled:opacity-50 hover:bg-green-400 min-h-12 min-w-[75px] px-4 py-2 bg-green-500 text-white transition">
-          Yes
-        </button>
-        <button id="noButton"
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-[20px] font-medium transition disabled:pointer-events-none disabled:opacity-50 hover:bg-red-700 h-12 min-w-[75px] w-auto px-4 py-2 bg-red-500 text-white">
-          No
+<body>
+  <!-- Stage 1: Magical Entrance Portal -->
+  <div id="stage1" class="stage active gradient-background">
+    <canvas id="particleCanvas1" class="particle-canvas"></canvas>
+    <div class="stage-content">
+      <div class="portal-container">
+        <div class="heart-portal">
+          <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+        <h1 class="portal-title">Something Special Awaits...</h1>
+        <button id="enterButton" class="portal-button">
+          <span>Enter</span>
+          <div class="button-glow"></div>
         </button>
       </div>
     </div>
   </div>
 
-  <script type="module">
-    import confetti from 'https://cdn.skypack.dev/canvas-confetti';
-    const yesButton = document.getElementById('yesButton');
-    const noButton = document.getElementById('noButton');
-    const imageDisplay = document.getElementById('imageDisplay');
-    const valentineQuestion = document.getElementById('valentineQuestion');
-    const responseButtons = document.getElementById('responseButtons');
-  
-    let noClickCount = 0;
-    let buttonHeight = 48; // Starting height in pixels
-    let buttonWidth = 80;
-    let fontSize = 20; // Starting font size in pixels
-    const imagePaths = [
-      "./images/image1.gif",
-      "./images/image2.gif",
-      "./images/image3.gif",
-      "./images/image4.gif",
-      "./images/image5.gif",
-      "./images/image6.gif",
-      "./images/image7.gif"
-    ];
-  
-    noButton.addEventListener('click', function() {
-      if (noClickCount < 5) {
-        noClickCount++;
-        imageDisplay.src = imagePaths[noClickCount];
-        buttonHeight += 35; // Increase height by 5px on each click
-        buttonWidth += 35;
-        fontSize += 25; // Increase font size by 1px on each click
-        yesButton.style.height = `${buttonHeight}px`; // Update button height
-        yesButton.style.width = `${buttonWidth}px`;
-        yesButton.style.fontSize = `${fontSize}px`; // Update font size
-        if (noClickCount < 6) {
-          noButton.textContent = ["No", "Are you sure?", "Pookie please", "Don't do this to me :(", "You're breaking my heart", "I'm gonna cry..."][noClickCount];
-        }
-      }
-    });
-  
-    yesButton.addEventListener('click', () => {
-      imageDisplay.src = './images/image7.gif'; // Change to image7.gif
-      valentineQuestion.textContent = "Yayyy!! :3"; // Change the question text
-      responseButtons.style.display = 'none'; // Hide both buttons
-      confetti(); // Trigger confetti animation
-    });
-  </script>  
+  <!-- Stage 2: Heart Catching Game -->
+  <div id="stage2" class="stage gradient-background">
+    <canvas id="gameCanvas" class="game-canvas"></canvas>
+    <div class="game-ui">
+      <div class="game-header">
+        <h2 class="game-title">Catch the Hearts!</h2>
+        <div class="love-meter-container">
+          <div class="love-meter-label">Love Meter</div>
+          <div class="love-meter-bar">
+            <div id="loveMeter" class="love-meter-fill"></div>
+          </div>
+          <div class="love-meter-percentage" id="lovePercentage">0%</div>
+        </div>
+      </div>
+      <div id="gameInstructions" class="game-instructions">
+        Move your cursor to catch falling hearts!
+      </div>
+      <div id="gameComplete" class="game-complete hidden">
+        <div class="complete-message">Love Meter Full!</div>
+        <button id="continueButton" class="continue-button">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 3: The Big Question -->
+  <div id="stage3" class="stage gradient-background">
+    <canvas id="particleCanvas3" class="particle-canvas"></canvas>
+    <div class="stage-content">
+      <div class="question-card" id="questionCard">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-pattern"></div>
+            <h2 class="card-title">A Special Question</h2>
+            <div class="tap-hint">Click to open</div>
+          </div>
+          <div class="card-back">
+            <img id="questionImage" src="./images/image1.gif" alt="Cute animation" class="question-gif" />
+            <h2 id="questionText" class="question-title">Will you be my Valentine?</h2>
+            <div id="encouragementText" class="encouragement-text"></div>
+            <div class="button-container" id="responseButtons">
+              <button id="yesButton" class="response-button yes-button">
+                <span>Yes</span>
+                <div class="button-shine"></div>
+              </button>
+              <button id="noButton" class="response-button no-button">
+                <span>No</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 4: Celebration -->
+  <div id="stage4" class="stage gradient-background">
+    <canvas id="celebrationCanvas" class="particle-canvas"></canvas>
+    <div class="stage-content">
+      <div class="celebration-container">
+        <h1 class="celebration-title">Yayyy!! :3</h1>
+        <img src="./images/image7.gif" alt="Celebration" class="celebration-gif" />
+        <div class="love-letter" id="loveLetter">
+          <div class="letter-paper">
+            <div class="letter-header">
+              <svg class="letter-heart" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <h3 class="letter-title">A Love Letter</h3>
+            </div>
+            <p class="letter-text" id="letterText"></p>
+            <div class="letter-footer">
+              <div class="letter-date" id="letterDate"></div>
+              <button id="sealButton" class="seal-button">
+                <span>Seal with a Kiss</span>
+                <svg class="kiss-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </button>
+              <div id="kissStamp" class="kiss-stamp hidden">💋</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Elements (for sound effects) -->
+  <div id="audioContainer" style="display: none;"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="./scripts/audio.js"></script>
+  <script type="module" src="./scripts/particles.js"></script>
+  <script type="module" src="./scripts/game.js"></script>
+  <script type="module" src="./scripts/animations.js"></script>
+  <script type="module" src="./scripts/main.js"></script>
 </body>
 </html>
