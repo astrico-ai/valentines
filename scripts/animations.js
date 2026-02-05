@@ -33,7 +33,7 @@ export class ButtonChaseController {
     this.noButton = noButton;
     this.questionCard = questionCard;
     this.yesEscapeCount = 0;
-    this.maxYesEscapes = 3;
+    this.maxYesEscapes = 7;
     this.isYesCatchable = false;
     this.noEscapeCount = 0;
     this.onYesClick = null;
@@ -43,8 +43,10 @@ export class ButtonChaseController {
       "Not so fast! 😏",
       "Catch me if you can! 💕",
       "Almost there! 🏃",
-      "One more time! ✨",
-      "You can do it! 💪"
+      "Keep trying! ✨",
+      "You can do it! 💪",
+      "So close now! 🎯",
+      "One more time! 💝"
     ];
 
     this.noMessages = [
